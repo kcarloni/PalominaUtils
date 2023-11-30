@@ -52,3 +52,24 @@ function accept_reject_sample(f, max_f, max_x::AbstractVector)
     end
     return x
 end
+
+hav(x) = sin(x/2)^2
+archav(x) = 2 * asin( sqrt(x) )
+
+function great_circle_dist( ϕ1, θ1, ϕ2, θ2 )
+
+    ## spherical law of cosines 
+    # dot_prod = cos(θ1) * cos(θ2) + sin(θ1) * sin(θ2) * cos(ϕ1 - ϕ2)
+    # return acos(dot_prod)
+
+    ## haversine formula
+    # delta_θ = abs(θ1 - θ2)
+    # delta_ϕ = abs(ϕ1 - ϕ2)
+    # x = ( sin(delta_θ/2)^2 + cos(θ1) * cos(θ2) * sin(delta_ϕ/2)^2 )
+    # return 2 * asin(sqrt(x))
+
+    ## haversine formula -- numerically better conditioned for small angles
+    delta_θ = θ1 - θ2
+    delta_ϕ = ϕ1 - ϕ2
+    return archav( hav(delta_θ) + ( 1 - hav(delta_θ) - hav(θ1+θ2) ) * hav( delta_ϕ )  )
+end

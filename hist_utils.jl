@@ -24,7 +24,6 @@ function calc_hist_w_errs( x, weights, edges )
     return x_weights, x_errs
 end
 
-
 function plot_hist_err!( x_edges, y_vals, y_errs; kwargs... )
     for i in eachindex( y_vals )
         
@@ -39,4 +38,13 @@ function plot_hist_err!( x_edges, y_vals, y_errs; kwargs... )
         plot!( [x_center, x_center], [y_vals[i]-y_errs[i]/2, y_vals[i]+y_errs[i]/2]; kwargs...  )
     end
     plot!()
+end
+
+function calc_colnorm_hist2d( x, weights, edges )
+    h = fit( Histogram, x, Weights(weights), edges )
+    for row in eachrow(h.weights)
+        row ./= sum(row)
+    end
+    h.weights[ h.weights .== 0. ] .= NaN
+    return h
 end
