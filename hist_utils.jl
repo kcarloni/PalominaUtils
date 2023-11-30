@@ -40,6 +40,12 @@ function plot_hist_err!( x_edges, y_vals, y_errs; kwargs... )
     plot!()
 end
 
+"""
+    'column normalized' when plotted using 
+        plot( get_centers.(h.edges)..., h.weights' )
+
+    ( row index increases along x-axis -> becomes column index )
+"""
 function calc_colnorm_hist2d( x, weights, edges )
     h = fit( Histogram, x, Weights(weights), edges )
     for row in eachrow(h.weights)
@@ -47,4 +53,20 @@ function calc_colnorm_hist2d( x, weights, edges )
     end
     h.weights[ h.weights .== 0. ] .= NaN
     return h
+end
+
+function calc_col_quantile( colnorm_h, q )
+
+    # 'colnorm' = when plotted 
+    # ( row index increases along x-axis -> becomes column index )
+    # sum.( eachrow(h) ) = 1, 1, ...
+
+    y_vals = get_centers( colnorm_h.edges[2] )
+    yq_of_x = Vector{Float64}(undef, length(colnorm_h.edges[1])-1 )
+
+    for (i, row) in enumerate( eachrow( colnorm_h.weights ) )
+        yq_of_x[i] = quantile( y_vals, Weights( row ), q )
+    end
+
+    return yq_of_x
 end
