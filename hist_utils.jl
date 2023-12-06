@@ -51,7 +51,7 @@ function calc_colnorm_hist2d( x, weights, edges )
     for row in eachrow(h.weights)
         row ./= sum(row)
     end
-    h.weights[ h.weights .== 0. ] .= NaN
+    # h.weights[ h.weights .== 0. ] .= NaN
     return h
 end
 
