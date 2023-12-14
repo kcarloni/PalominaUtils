@@ -30,12 +30,14 @@ function plot_hist_err!( x_edges, y_vals, y_errs; kwargs... )
         ## rectangle plots...
         # plot!( rectangle( x_edges[i], x_edges[i+1], y_vals[i]-y_errs[i]/2, y_vals[i]+y_errs[i]/2  ); kwargs... )
                 
+        kwargs_no_label = [ k for k in kwargs if k[1] != :label ]
+
         # horizontal line
-        plot!( x_edges[i:i+1], [y_vals[i], y_vals[i]]; kwargs... )
+        plot!( x_edges[i:i+1], [y_vals[i], y_vals[i]]; kwargs_no_label... )        
         
         # vertical line
         x_center = 0.5*sum(x_edges[i:i+1])
-        plot!( [x_center, x_center], [y_vals[i]-y_errs[i]/2, y_vals[i]+y_errs[i]/2]; kwargs...  )
+        plot!( [x_center, x_center], [y_vals[i]-y_errs[i]/2, y_vals[i]+y_errs[i]/2]; kwargs_no_label...  )
     end
     plot!()
 end
