@@ -1,10 +1,22 @@
 
 using ColorSchemes
 
-function get_cscheme_centered_at(x0, x; cscheme=ColorSchemes.tol_prgn, N=10)
-    xmin, xmax = extrema(x)
-    α = max(x0 - xmin, xmax - x0)
-    ColorScheme([ get(cscheme, (y - (1-α))/(2α) ) for y in range(xmin, xmax, N) ])
+function get_cscheme_centered_at(x0, xmin, xmax; cscheme=ColorSchemes.tol_prgn, N=256)
+    x = range(xmin, xmax, N)
+    # right shift:
+    if (xmax - x0) > (x0 - xmin)
+        return ColorScheme( get.( Ref(cscheme), (@. 1 - 0.5 * (xmax - x)/(xmax - x0)) ) )
+    else
+        return ColorScheme( get.( Ref(cscheme), (@.     0.5 * (x - xmin)/(x0 - xmin)) ) )
+    end
+end
+
+function calc_zcolor( x, xmin, xmax, cmin=0., cmax=1.)
+    if x <= xmin;       return cmin
+    elseif x >= xmax;   return cmax
+    else
+        return cmin + cmax * (x - xmin)/xmax
+    end
 end
 
 function plot_stair!( x_edges, y; kwargs... )
