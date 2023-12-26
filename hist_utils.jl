@@ -16,7 +16,7 @@ function calc_hist_w_errs( x, weights, edges )
         edges
     )
 
-    Δx = edges[2:end] .- edges[1:end-1]
+    Δx = step(edges) #edges[2:end] .- edges[1:end-1]
     w_norm = sum( h.weights ) .* Δx
     x_weights = h.weights ./ w_norm
     x_errs = sqrt.( h_err.weights ) ./ w_norm
