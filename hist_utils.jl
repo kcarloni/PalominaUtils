@@ -1,9 +1,12 @@
 
+using StatsBase
 
 # rectangle(w, h, x, y) = Shape(x .+ [0,w,w,0], y .+ [0,0,h,h])
 # rectangle( x1, x2, y1, y2 ) = Shape( [x1, x2, x2, x1], [y1, y1, y2, y2] )
 
-function calc_hist_w_errs( x, weights, edges )
+Base.step(x::T) where T <: AbstractVector = x[2:end] .- x[1:end-1]
+
+function calc_hist_w_errs( x, weights, edges, normalize=true )
     
     h = fit( Histogram, 
         x, 
@@ -16,13 +19,17 @@ function calc_hist_w_errs( x, weights, edges )
         edges
     )
 
-    Δx = step(edges) #edges[2:end] .- edges[1:end-1]
-    w_norm = sum( h.weights ) .* Δx
-    x_weights = h.weights ./ w_norm
-    x_errs = sqrt.( h_err.weights ) ./ w_norm
-    
+    Δx = step(edges)
+
+    if normalize
+        w_norm = sum( h.weights ) .* Δx
+        x_weights = h.weights ./ w_norm
+        x_errs = sqrt.( h_err.weights ) ./ w_norm
+    end
+        
     return x_weights, x_errs
 end
+
 
 function plot_hist_err!( x_edges, y_vals, y_errs; kwargs... )
     for i in eachindex( y_vals )
@@ -44,11 +51,17 @@ function plot_hist_err!( x_edges, y_vals, y_errs; kwargs... )
 
 end
 
-"""
-    'column normalized' when plotted using 
-        plot( get_centers.(h.edges)..., h.weights' )
+function plot_1dim_samples!( samples, y0=0., y1=1.; kwargs... )
+    for x in samples
+        plot!( [x, x], [y0, y1]; kwargs... )
+    end
+end
 
-    ( row index increases along x-axis -> becomes column index )
+"""
+'column normalized' when plotted using 
+    `plot( get_centers.(h.edges)..., h.weights' )`
+
+( row index increases along x-axis -> becomes column index )
 """
 function calc_colnorm_hist2d( x, weights, edges )
     h = fit( Histogram, x, Weights(weights), edges )
