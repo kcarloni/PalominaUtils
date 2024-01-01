@@ -21,12 +21,12 @@ function calc_hist_w_errs( x, weights, edges, normalize=true )
 
     Δx = step(edges)
 
-    if normalize
-        w_norm = sum( h.weights ) .* Δx
-        x_weights = h.weights ./ w_norm
-        x_errs = sqrt.( h_err.weights ) ./ w_norm
+    if normalize;       w_norm = sum( h.weights ) .* Δx
+    else;               w_norm = 1.
     end
-        
+
+    x_weights = h.weights ./ w_norm
+    x_errs = sqrt.( h_err.weights ) ./ w_norm
     return x_weights, x_errs
 end
 
