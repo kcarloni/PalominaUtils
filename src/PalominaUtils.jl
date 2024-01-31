@@ -1,5 +1,7 @@
 module PalominaUtils
 
+using Plots
+
 include("utils.jl")
 include("units.jl")
 include("hist_utils.jl")
