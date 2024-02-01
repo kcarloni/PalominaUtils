@@ -4,8 +4,8 @@
 get_diffs( x ) = (x[2:end] .- x[1:end-1])
 get_centers(edg) = 0.5 .* (edg[1:end-1] .+ edg[2:end])
 
-deg_to_rad(x) = x * pi/180
-rad_to_deg(x) = x * 180/pi
+# deg_to_rad(x) = x * pi/180
+# rad_to_deg(x) = x * 180/pi
 
 
 # for checking if a value is inside a window defined on a circle. 
@@ -25,33 +25,6 @@ in_lin_window(x, x0, dx) = (x0 - dx) <= x < (x0 + dx)
 in_l_window(l, l0, dl) = in_circ_window(l, l0, dl, -pi, pi)
 in_b_window(b, b0, db) = in_circ_window(b, b0, db, -pi/2, pi/2)
 
-
-# for accept-reject sampling:
-function accept_reject_sample(f, max_f, max_x::Real)
-
-    x = 0.
-    reject = true
-    while reject
-        x = rand() * max_x
-        y = rand() * max_f
-        if ( y <= f(x) );  reject=false; end
-    end
-    return x
-end
-
-function accept_reject_sample(f, max_f, max_x::AbstractVector)
-
-    ndims = length(max_x)
-    x = Vector{Float64}(undef, ndims)
-
-    reject = true
-    while reject
-        x .= rand( ndims ) .* max_x
-        y = rand() * max_f
-        if ( y <= f(x...) );  reject=false; end
-    end
-    return x
-end
 
 hav(x) = sin(x/2)^2
 archav(x) = 2 * asin( sqrt(x) )

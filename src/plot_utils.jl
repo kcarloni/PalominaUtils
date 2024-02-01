@@ -1,6 +1,4 @@
 
-using ColorSchemes
-
 function get_cscheme_centered_at(x0, xmin, xmax; cscheme=ColorSchemes.tol_prgn, N=256)
     x = range(xmin, xmax, N)
     # right shift:
