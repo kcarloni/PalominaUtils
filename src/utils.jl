@@ -4,9 +4,16 @@
 get_diffs( x ) = (x[2:end] .- x[1:end-1])
 get_centers(edg) = 0.5 .* (edg[1:end-1] .+ edg[2:end])
 
-# deg_to_rad(x) = x * pi/180
-# rad_to_deg(x) = x * 180/pi
+function try_make_range( x, rtol=1e-5 )
 
+    xr = range( x[1], x[end], length(x) )
+
+    if all( isapprox.( x, xr; rtol ) )
+        return xr 
+    else
+        error("steps not approx. equal")
+    end
+end
 
 # for checking if a value is inside a window defined on a circle. 
 function in_circ_window(l, l0, dl, lmin, lmax)
