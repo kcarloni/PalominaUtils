@@ -4,6 +4,8 @@
 get_diffs( x ) = (x[2:end] .- x[1:end-1])
 get_centers(edg) = 0.5 .* (edg[1:end-1] .+ edg[2:end])
 
+flatten( x::AbstractArray ) = reshape( x, prod(size(x)) )
+
 function try_make_range( x, rtol=1e-5 )
 
     xr = range( x[1], x[end], length(x) )
