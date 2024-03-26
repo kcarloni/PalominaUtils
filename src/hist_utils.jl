@@ -31,6 +31,7 @@ function calc_hist_w_errs( x, weights, edges, normalize=true )
 end
 
 
+
 function plot_hist_err!( x_edges, y_vals, y_errs; kwargs... )
     for i in eachindex( y_vals )
         
@@ -49,6 +50,17 @@ function plot_hist_err!( x_edges, y_vals, y_errs; kwargs... )
 
     scatter!([], []; marker=:plus, kwargs...)
 
+end
+
+function plot_hist_err_rect!(x_edges, y_vals, y_errs; kwargs...)
+    for i in eachindex( y_vals )
+
+        kwargs_no_label = ( k for k in kwargs if k[1] != :label )
+        
+        # rectangle plots...
+        plot!( rectangle( x_edges[i], x_edges[i+1], y_vals[i]-y_errs[i]/2, y_vals[i]+y_errs[i]/2  ); kwargs_no_label... )
+    end
+    plot!()
 end
 
 function plot_1dim_samples!( samples, y0=0., y1=1.; kwargs... )

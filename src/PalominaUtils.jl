@@ -28,6 +28,7 @@ export calc_hist_w_errs
 export calc_colnorm_hist2d
 # export calc_col_quantile
 
+export plot_hist_err_rect!
 export plot_hist_err!
 export plot_1dim_samples!
 export plot_dist_summary!
