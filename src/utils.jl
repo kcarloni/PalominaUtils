@@ -1,8 +1,12 @@
 
 # miscellaneous utility functions.
 
-get_diffs( x ) = (x[2:end] .- x[1:end-1])
-get_centers(edg) = 0.5 .* (edg[1:end-1] .+ edg[2:end])
+# get_diffs( x ) = (x[2:end] .- x[1:end-1])
+
+get_centers( x ) = 0.5 .* (x[1:end-1] .+ x[2:end])
+get_centers( x::AbstractRange ) = range( first(x)+step(x)/2, last(x)-step(x)/2, step=step(x) )
+
+get_edges( x::AbstractRange ) = range( first(x)-step(x)/2, last(x)+step(x)/2, step=step(x) )
 
 flatten( x::AbstractArray ) = reshape( x, prod(size(x)) )
 
@@ -18,6 +22,7 @@ function try_make_range( x, rtol=1e-5 )
 end
 
 # for checking if a value is inside a window defined on a circle. 
+bound_phi(ϕ) = mod2pi(ϕ+pi) - pi
 function in_circ_window(l, l0, dl, lmin, lmax)
 
     l_left = bound_phi( l0 - dl )  
