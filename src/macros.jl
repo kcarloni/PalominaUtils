@@ -11,6 +11,12 @@ macro display(x)
     end
 end
 
+macro dump(x)
+    return quote
+        dump( $(esc(x)) )
+    end
+end
+
 # macro show_left(exs...)
 #     blk = Expr(:block)
 #     for ex in exs

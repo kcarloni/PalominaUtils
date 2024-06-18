@@ -20,13 +20,14 @@ import Base.*
 
 export @println
 export @display
+export @dump
 
 export get_centers
 export get_diffs
 export flatten
 export try_make_range
 
-export in_circ_window
+# export in_circ_window
 # export in_l_window
 # export in_b_window
 export in_lin_window
@@ -40,6 +41,8 @@ export plot_hist_err!
 export plot_1dim_samples!
 export plot_dist_summary!
 
-export rby_4, earth_4, gpb_pastel_12, egypt_4, west_4, poppy_4, buor_4
+export rby_4, earth_4, egypt_4, west_4, poppy_4, buor_4, burd_4
+export gpb_pastel_12, dracula_8, dracula_6
+export CMR_6, CMR_5
 
 end

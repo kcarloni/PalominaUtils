@@ -1,7 +1,7 @@
 
 # miscellaneous utility functions.
 
-# get_diffs( x ) = (x[2:end] .- x[1:end-1])
+get_diffs( x ) = (x[2:end] .- x[1:end-1])
 
 get_centers( x ) = 0.5 .* (x[1:end-1] .+ x[2:end])
 get_centers( x::AbstractRange ) = range( first(x)+step(x)/2, last(x)-step(x)/2, step=step(x) )
@@ -22,22 +22,22 @@ function try_make_range( x, rtol=1e-5 )
 end
 
 # for checking if a value is inside a window defined on a circle. 
-bound_phi(ϕ) = mod2pi(ϕ+pi) - pi
-function in_circ_window(l, l0, dl, lmin, lmax)
+# bound_phi(ϕ) = mod2pi(ϕ+pi) - pi
+# function in_circ_window(l, l0, dl, lmin, lmax)
 
-    l_left = bound_phi( l0 - dl )  
-    l_right = bound_phi( l0 + dl )
+#     l_left = bound_phi( l0 - dl )  
+#     l_right = bound_phi( l0 + dl )
     
-    in_right_win = (l0 < l_right) ? (l0 <= l <= l_right) : ( (l0 <= l <= lmax) | (lmin <= l <= l_right) )
-    in_left_win  = (l_left < l0)  ? (l_left <= l <= l0)  : ( (l_left <= l <= lmax) | (lmin <= l <= l0) )
+#     in_right_win = (l0 < l_right) ? (l0 <= l <= l_right) : ( (l0 <= l <= lmax) | (lmin <= l <= l_right) )
+#     in_left_win  = (l_left < l0)  ? (l_left <= l <= l0)  : ( (l_left <= l <= lmax) | (lmin <= l <= l0) )
     
-    return in_left_win | in_right_win
-end
+#     return in_left_win | in_right_win
+# end
 
 in_lin_window(x, x0, dx) = (x0 - dx) <= x < (x0 + dx)
 
-in_l_window(l, l0, dl) = in_circ_window(l, l0, dl, -pi, pi)
-in_b_window(b, b0, db) = in_circ_window(b, b0, db, -pi/2, pi/2)
+# in_l_window(l, l0, dl) = in_circ_window(l, l0, dl, -pi, pi)
+# in_b_window(b, b0, db) = in_circ_window(b, b0, db, -pi/2, pi/2)
 
 
 hav(x) = sin(x/2)^2
