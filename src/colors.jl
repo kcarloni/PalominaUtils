@@ -30,10 +30,11 @@ dracula_4 = parse.(Colorant, "#" .* ["6392f5","8a0000","fc4c75","531a8a"])
 CMR_6 = parse.(Colorant, "#" .* ["7818F4", "5E8EFF", "AFC9FF", "FF1300", "FF9A4A", "FFCC66"])
 CMR_5 = CMR_6[ [2, 3, 5, 4, 1] ]
 
-test = parse.( Colorant, "#" .* ["5E8EFF", "AFC9FF", "FFCC66", "FF6F66", "FF1300", "CC4DC4", "7818F4"])
+CMR_spectrum = parse.( Colorant, "#" .* ["5E8EFF", "AFC9FF", "FFCC66", "FF6F66", "FF1300", "CC4DC4", "7818F4"])
 # test = parse.(Colorant, "#" .* [ "5E8EFF", "AFC9FF", "FFB26B", "FF6F66", "FF1300",  "CC4DC4", "7818F4",])
 # "E982BD" "ff6361" #CD50A9
 
+prometheus_6 = parse.( Colorant, [ "#ef6a42", "#fdbd69", "#f8b6ba", "#71946f", "#7cbfc3", "#4a4995" ])
 
 function plot_palette( colors )
 
@@ -54,11 +55,10 @@ function plot_palette_as_lines( colors )
 end
 
 # other = parse.(Colorant, "#" .* ["3a25a1","f73e2d","9d337c","e6a60e","1f1f66"])
-plot_palette_as_lines( test )
-plot_palette_as_lines( buor_4 )
+# plot_palette_as_lines( buor_4 )
 
-CMR_6[[1, 2, 3]]
-parse.( Colorant, ["#ff1300", "#ff6080", "#f9a4c9"])
+# CMR_6[[1, 2, 3]]
+# parse.( Colorant, ["#ff1300", "#ff6080", "#f9a4c9"])
 
 
 
