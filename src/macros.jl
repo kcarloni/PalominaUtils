@@ -17,6 +17,13 @@ macro dump(x)
     end
 end
 
+
+macro flatten(x)
+    return quote
+        flatten( $(esc(x)) )
+    end
+end
+
 # macro show_left(exs...)
 #     blk = Expr(:block)
 #     for ex in exs

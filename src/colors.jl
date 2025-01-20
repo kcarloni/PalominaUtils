@@ -1,8 +1,4 @@
 
-using ColorSchemes
-using Colors
-using Measures: mm
-
 gpb_pastel_12 = vcat( 
     ColorSchemes.mint..., 
     # ColorSchemes.candy[5:end]..., 

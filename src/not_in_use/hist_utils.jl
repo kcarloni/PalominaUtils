@@ -1,6 +1,4 @@
 
-using StatsBase
-
 # rectangle(w, h, x, y) = Shape(x .+ [0,w,w,0], y .+ [0,0,h,h])
 # rectangle( x1, x2, y1, y2 ) = Shape( [x1, x2, x2, x1], [y1, y1, y2, y2] )
 
