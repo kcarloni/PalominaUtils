@@ -1,4 +1,8 @@
 
+
+# c1 = parse.( Colorant, ["#B3D889","#323E77","#8E98BF","#319F45"] );
+sunstar_7 = [ parse.( Colorant, ["#FF6BE0ff", "#F61010ff", "#671459ff", colorant"tomato", "#F7B655ff", "#F9B7D5ff", "#FE7A83ff",] )...,  ]
+
 gpb_pastel_12 = vcat( 
     ColorSchemes.mint..., 
     # ColorSchemes.candy[5:end]..., 
