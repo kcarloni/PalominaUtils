@@ -10,6 +10,8 @@ export @dump
 export @flatten
 export @convert
 
+using MathTeXEngine
+
 using ColorSchemes
 using Colors
 include("colors.jl")
