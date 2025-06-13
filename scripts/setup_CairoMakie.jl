@@ -1,7 +1,6 @@
 
 using CairoMakie
-
-using PalominaUtils.MathTeXEngine: FontFamily, texfont
+using MathTeXEngine: FontFamily, texfont
 # FontFamily() = FontFamily("TeXGyreHeros")
 FontFamily() = FontFamily("TeXGyrePagella")
 
