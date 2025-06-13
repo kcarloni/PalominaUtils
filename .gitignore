@@ -1,0 +1,6 @@
+
+.vscode/
+Manifest.toml
+*/__pycache__/
+.DS_store
+
