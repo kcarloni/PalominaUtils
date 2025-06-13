@@ -8,6 +8,7 @@ export @println
 export @display
 export @dump
 export @flatten
+export @convert
 
 using ColorSchemes
 using Colors

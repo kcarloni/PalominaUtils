@@ -17,10 +17,15 @@ macro dump(x)
     end
 end
 
-
 macro flatten(x)
     return quote
         flatten( $(esc(x)) )
+    end
+end
+
+macro convert( t, x )
+    return quote
+        convert( $(esc(t)), $(esc(x)) )
     end
 end
 
