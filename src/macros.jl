@@ -1,7 +1,8 @@
 
 macro println(x)
     return quote
-        println( repr( MIME("text/plain"), $(esc(x)) ) )
+        println( $(esc(x)) )
+        # println( repr( MIME("text/plain"), $(esc(x)) ) )
     end
 end
 
@@ -28,6 +29,14 @@ macro convert( t, x )
         convert( $(esc(t)), $(esc(x)) )
     end
 end
+
+macro name(arg)
+    x = string(arg)
+    quote
+        $x
+    end
+end
+
 
 # macro show_left(exs...)
 #     blk = Expr(:block)

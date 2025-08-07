@@ -3,24 +3,38 @@ module PalominaUtils
 const PalomaPath = pkgdir(@__MODULE__) * "/"
 export PalomaPath
 
+# =======================================
+# macros
 include("macros.jl")
 export @println
 export @display
 export @dump
 export @flatten
 export @convert
+export @name 
+
+# =======================================
+# colors 
 
 using ColorSchemes
 using Colors
-include("colors.jl")
-export rby_4, earth_4, egypt_4, west_4, poppy_4, buor_4, burd_4
-export gpb_pastel_12, dracula_8, dracula_6
-export CMR_6, CMR_5, CMR_spectrum
-export prometheus_6
-include("colors_distinct_sequential.jl")
-export distinct_sequential
 
+function lighten( c, l )
+    hsl = HSLA( c )
+    HSLA( hsl.h, hsl.s, l, hsl.alpha )
+end
 
+function saturate( c, s )
+    hsl = HSLA( c )
+    HSLA( hsl.h, s, hsl.l, hsl.alpha )   
+end
+export lighten, saturate
+
+include("colorschemes.jl")
+export sunstar_7, gpb_pastel_12, distinct_sequential
+
+# =======================================
+# latexstrings
 # macro that allows for easy wrapping of strings into latexstrings.
 # this is needed because string multiplication, interpolation outputs strings by default;
 # adding a wrapper quickly turns them back into latexstrings. e.g: 
@@ -34,6 +48,8 @@ macro lstring(x)
 end
 export @lstring
 
+# =======================================
+# general utility 
 
 get_diffs( x ) = (x[2:end] .- x[1:end-1])
 get_centers( x ) = 0.5 .* (x[1:end-1] .+ x[2:end])
@@ -53,6 +69,8 @@ function try_make_range( x, rtol=1e-5 )
 end
 export get_diffs, get_centers, get_edges, try_make_range, flatten
 
+# =======================================
+# colorscheme 
 
 """
     get_cscheme_centered_at(x0, xmin, xmax; cscheme)
@@ -70,6 +88,8 @@ function get_cscheme_centered_at(x0, xmin, xmax; cscheme=ColorSchemes.tol_prgn, 
     end
 end
 export get_cscheme_centered_at
+
+
 
 # include("plot_sq_contour.jl")
 # include("hist_utils.jl")
