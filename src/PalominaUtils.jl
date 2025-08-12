@@ -89,23 +89,4 @@ function get_cscheme_centered_at(x0, xmin, xmax; cscheme=ColorSchemes.tol_prgn, 
 end
 export get_cscheme_centered_at
 
-
-
-# include("plot_sq_contour.jl")
-# include("hist_utils.jl")
-# include("plot_utils.jl")
-
-# export calc_hist_w_errs
-# export calc_colnorm_hist2d
-# # export calc_col_quantile
-
-# export plot_hist_err_rect!
-# export plot_hist_err!
-# export plot_1dim_samples!
-# export plot_dist_summary!
-
-
-# # # py-utils
-# # include("py_utils.jl")
-
 end

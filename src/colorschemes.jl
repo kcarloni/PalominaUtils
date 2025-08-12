@@ -36,3 +36,22 @@ distinct_sequential[12] = [
     # parse( Colorant, "#A5FDCE")
     # parse( Colorant, "#1ECCA0")
 ]
+
+
+# parse.( Colorant, [
+#     "#855DE4",
+#     "#B7BEF1",
+#     "#15C1A5",
+#     "#DCC261",
+#     "#EC59BB",
+#     "#737A8C",
+# ] )
+
+# parse.( Colorant, [
+#     "#F4A460", # Sandy brown
+#     "#87CEEB", # Sky blue
+#     "#0F7173", # caribbean current
+#     "#59260B", # seal brown
+#     "#17135A", # deep blue
+#     "#52B380",
+# ])
