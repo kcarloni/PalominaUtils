@@ -15,6 +15,7 @@ update_theme!(
 )
 
 import CairoMakie.Makie.UnicodeFun: to_superscript
+import CairoMakie.Makie: arrows2d!, arrows3d!
 
 # these are relative to 1 CSS px
 const inch = 96

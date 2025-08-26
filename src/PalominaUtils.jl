@@ -13,6 +13,8 @@ export @flatten
 export @convert
 export @name 
 
+using Pipe; export @pipe
+
 # =======================================
 # colors 
 
