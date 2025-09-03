@@ -37,7 +37,12 @@ function shift_hue(c, Δh)
     HSLA( mod(hsl.h + Δh, 360), hsl.s, hsl.l, hsl.alpha )
 end
 
-export lighten, saturate, shift_hue
+function set_alpha(c, alpha)
+    hsl = HSLA( c )
+    HSLA( hsl.h, hsl.s, hsl.l, alpha )
+end
+
+export lighten, saturate, shift_hue, set_alpha
 
 include("colorschemes.jl")
 export sunstar_7, gpb_pastel_12, distinct_sequential
