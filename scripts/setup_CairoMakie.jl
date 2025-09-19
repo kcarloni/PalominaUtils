@@ -42,3 +42,13 @@ function CairoMakie.arrows3d!(ax,
         [x], [y], [z], 
         [u], [v], [w]; kwargs... )
 end
+
+edge_stairs!( ax, bine, binv; kwargs... ) = stairs!( ax, bine, [0., binv...]; step=:pre, kwargs... )
+
+function filled_stairs!( ax, binc, binv; kwargs... )
+    barplot!(
+        ax, binc, binv;
+        gap = 0.,
+        kwargs...
+    )
+end
