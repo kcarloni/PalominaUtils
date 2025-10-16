@@ -30,13 +30,19 @@ macro convert( t, x )
     end
 end
 
-macro name(arg)
-    x = string(arg)
-    quote
-        $x
+macro propertynames(x)
+    return quote
+        propertynames( $(esc(x)) )
     end
 end
 
+
+# macro name(arg)
+#     x = string(arg)
+#     quote
+#         $x
+#     end
+# end
 
 # macro show_left(exs...)
 #     blk = Expr(:block)

@@ -1,9 +1,9 @@
 
 using CairoMakie
-using MathTeXEngine: FontFamily, texfont
+import CairoMakie.Makie.MathTeXEngine: FontFamily, texfont
+
 # FontFamily() = FontFamily("TeXGyreHeros")
 FontFamily() = FontFamily("TeXGyrePagella")
-
 
 update_theme!( 
     fonts=(; 

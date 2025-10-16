@@ -11,7 +11,8 @@ export @display
 export @dump
 export @flatten
 export @convert
-export @name 
+# export @name 
+export @propertynames
 
 using Pipe; export @pipe
 
